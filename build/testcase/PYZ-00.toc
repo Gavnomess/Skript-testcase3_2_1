@@ -935,4 +935,7 @@
   ('__future__', '/usr/lib64/python2.7/__future__.py', 'PYMODULE'),
   ('subprocess', '/usr/lib64/python2.7/subprocess.py', 'PYMODULE'),
   ('pickle', '/usr/lib64/python2.7/pickle.py', 'PYMODULE'),
-  ('string', '/usr/lib64/python2.7/string.py', 'PYMODULE')])
+  ('string', '/usr/lib64/python2.7/string.py', 'PYMODULE'),
+  ('sourcetestcase',
+   '/home/123/project_python/sourcetestcase.py',
+   'PYMODULE')])
