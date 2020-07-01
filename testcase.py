@@ -10,7 +10,7 @@ import sys
 
 #import source_testcase3_2_1
 
-
+indexlist = 0
 
 loop = True
 while loop == True:
@@ -24,10 +24,10 @@ while loop == True:
     print '==================================================='
     response = raw_input('Введите цифру')
     if response == '1': # 
-        sourcetestcase.testcase3_2_1(sourcetestcase.index_list)
-        for sourcetestcase.index_list in sourcetestcase.Output_tests:
-            print sourcetestcase.index_list.encode('utf-8')
-        print 'Все тесты закончены'
+        sourcetestcase.testcase3_2_1(indexlist)
+        for indexlist in sourcetestcase.Output_tests:
+            print indexlist.encode('utf-8')
+        print '\033[32mВсе тесты закончены\033[0m'
     elif response == '2': # Выход
         loop = False
         print 'Тест закончен'        

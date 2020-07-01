@@ -12,34 +12,41 @@ Dir_and_files = ('/tmp/dir_wr','/tmp/dir_read','/tmp/dir_exec','/tmp/dir_wr_read
                  '/tmp/tst_fldr/read_only.txt', '/tmp/tst_fldr/write_only.txt',
                  '/tmp/tst_fldr/exec_only.sh', '/tmp/tst_fldr/rw.txt')
 Output_tests = []
-index_list = 0
+#global index_list 
 
 
 
 
 def precondition(index_list): # создание предварительных настроек
 
+# удаление каталогов 
+    process = subprocess.call('sudo rm -fr /tmp/dir_wr/', shell=True)
+    process = subprocess.call('sudo rm -fr /tmp/dir_read/', shell=True)
+    process = subprocess.call('sudo rm -fr /tmp/dir_wr_read/', shell=True)
+    process = subprocess.call('sudo rm -fr /tmp/dir_exec/', shell=True)
+    process = subprocess.call('sudo rm -fr /tmp/tst_fldr/', shell=True)
+
     process = subprocess.check_call('sudo mkdir /tmp/dir_wr', shell=True)
     if process == 0:
-        Output_tests.append('Создание директории '+Dir_and_files[0]+' прошло успешно')
+        Output_tests.append('Создание директории '+Dir_and_files[0]+ "\033[32m прошло успешно\033[0m")
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo mkdir /tmp/dir_read', shell=True)
     if process == 0:
-        Output_tests.append('Создание директории '+Dir_and_files[1]+' прошло успешно')
+        Output_tests.append('Создание директории '+Dir_and_files[1]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo mkdir /tmp/dir_exec', shell=True)
     if process == 0: 
-        Output_tests.append('Создание директории '+Dir_and_files[2]+' прошло успешно')
+        Output_tests.append('Создание директории '+Dir_and_files[2]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo mkdir /tmp/dir_wr_read', shell=True)
     if process == 0:
-        Output_tests.append('Создание директории '+Dir_and_files[3]+' прошло успешно')
+        Output_tests.append('Создание директории '+Dir_and_files[3]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
@@ -47,24 +54,24 @@ def precondition(index_list): # создание предварительных 
 
     process = subprocess.check_call('sudo chmod 330 /tmp/dir_wr/', shell=True)
     if process == 0:
-        Output_tests.append('Изменение прав для каталога '+Dir_and_files[0]+' прошло успешно')
+        Output_tests.append('Изменение прав для каталога '+Dir_and_files[0]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo chmod 440 /tmp/dir_read/', shell=True)
     if process == 0:
-        Output_tests.append('Изменение прав для каталога '+Dir_and_files[1]+' прошло успешно')
+        Output_tests.append('Изменение прав для каталога '+Dir_and_files[1]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo chmod 660 /tmp/dir_wr_read/', shell=True)
     if process == 0:
-        Output_tests.append('Изменение прав для каталога '+Dir_and_files[2]+' прошло успешно')
+        Output_tests.append('Изменение прав для каталога '+Dir_and_files[2]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
     process = subprocess.check_call('sudo chmod 110 /tmp/dir_exec/', shell=True)
     if process == 0:
-        Output_tests.append('Изменение прав для каталога '+Dir_and_files[3]+' прошло успешно')
+        Output_tests.append('Изменение прав для каталога '+Dir_and_files[3]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 # Просмотреть права созданных каталогов:
@@ -73,111 +80,242 @@ def precondition(index_list): # создание предварительных 
 #Создать тестовый каталог  tst_fldr и в нем 4 файла:
     process = subprocess.check_call('sudo mkdir /tmp/tst_fldr/', shell=True)
     if process == 0:
-        Output_tests.append('Создание директории '+Dir_and_files[4]+' прошло успешно')
+        Output_tests.append('Создание директории '+Dir_and_files[4]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo touch /tmp/tst_fldr/read_only.txt', shell=True)
     if process == 0:    
-        Output_tests.append('Создание файла '+Dir_and_files[5]+' прошло успешно')
+        Output_tests.append('Создание файла '+Dir_and_files[5]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo touch /tmp/tst_fldr/write_only.txt', shell=True)
     if process == 0:    
-        Output_tests.append('Создание файла '+Dir_and_files[6]+' прошло успешно')
+        Output_tests.append('Создание файла '+Dir_and_files[6]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo touch /tmp/tst_fldr/exec_only.sh', shell=True)
     if process == 0:    
-        Output_tests.append('Создание файла '+Dir_and_files[7]+' прошло успешно')
+        Output_tests.append('Создание файла '+Dir_and_files[7]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo touch /tmp/tst_fldr/rw.txt', shell=True)
     if process == 0:    
-        Output_tests.append('Создание файла '+Dir_and_files[8]+' прошло успешно')
+        Output_tests.append('Создание файла '+Dir_and_files[8]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
 # Создание прав на изменение файлов ##########################################################
     process = subprocess.check_call('sudo chmod 440 /tmp/tst_fldr/read_only.txt', shell=True)
     if process == 0:    
-        Output_tests.append('Изменение прав для файла '+Dir_and_files[5]+' прошло успешно')
+        Output_tests.append('Изменение прав для файла '+Dir_and_files[5]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo chmod 220 /tmp/tst_fldr/write_only.txt', shell=True)
     if process == 0:    
-        Output_tests.append('Изменение прав для файла '+Dir_and_files[6]+' прошло успешно')
+        Output_tests.append('Изменение прав для файла '+Dir_and_files[6]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo chmod 660 /tmp/tst_fldr/rw.txt', shell=True)
     if process == 0:
-        Output_tests.append('Изменение прав для файла '+Dir_and_files[8]+' прошло успешно')
+        Output_tests.append('Изменение прав для файла '+Dir_and_files[8]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 
     process = subprocess.check_call('sudo chmod 550 /tmp/tst_fldr/exec_only.sh', shell=True)
     if process == 0:
-        Output_tests.append('Изменение прав для файла '+Dir_and_files[7]+' прошло успешно')
+        Output_tests.append('Изменение прав для файла '+Dir_and_files[7]+'\033[32m прошло успешно\033[0m')
         print Output_tests[index_list].encode('utf-8')
         index_list +=1
 # Просмотреть права созданных файлов:        
     process = subprocess.check_call('sudo ls -l /tmp/tst_fldr/', shell=True)
-# удаление каталогов 
-    process = subprocess.check_call('sudo rm -fr /tmp/dir_wr/', shell=True)
-    process = subprocess.check_call('sudo rm -fr /tmp/dir_read/', shell=True)
-    process = subprocess.check_call('sudo rm -fr /tmp/dir_wr_read/', shell=True)
-    process = subprocess.check_call('sudo rm -fr /tmp/dir_exec/', shell=True)
-    process = subprocess.check_call('sudo rm -fr /tmp/tst_fldr/', shell=True)
 
     print "Начальные настройки выполнены"
-    return()
+    Output_tests.append("\033[32mНачальные настройки выполнены\033[0m")
+    index_list +=1
+    return(index_list)
 
-def test_1():  #Тест а
+def test_1(index_list, condition_tests):  #Тест а
 
 # пользователями ivanov и petrov просмотреть содержимое файлов в каталоге tst_fldr
-    process = subprocess.check_output('cat /tmp/tst_fldr/read_only.txt', shell=True, stderr=subprocess.STDOUT)
-    """
-    process = subprocess.check_call('cat /tmp/tst_fldr/rw.txt', shell=True)
-    process = subprocess.check_call('cat /tmp/tst_fldr/write_only.txt', shell=True)
-    process = subprocess.check_call('cat /tmp/tst_fldr/exec_only.sh', shell=True)
+    process = subprocess.Popen("cat /tmp/tst_fldr/read_only.txt", shell = True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='cat: /tmp/tst_fldr/read_only.txt: Отказано в доступе\n':
+            status2 = 'cat: /tmp/tst_fldr/read_only.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m') 
+    elif condition_tests == 'б':
+        print status2
+
+    process = subprocess.Popen('cat /tmp/tst_fldr/rw.txt', shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='cat: /tmp/tst_fldr/rw.txt: Отказано в доступе\n':
+            status2 =='cat: /tmp/tst_fldr/rw.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+
+    process = subprocess.Popen('cat /tmp/tst_fldr/write_only.txt', shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='cat: /tmp/tst_fldr/write_only.txt: Отказано в доступе\n':
+            status2 =='cat: /tmp/tst_fldr/write_only.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+
+    process = subprocess.Popen('cat /tmp/tst_fldr/exec_only.sh', shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='cat: /tmp/tst_fldr/exec_only.sh: Отказано в доступе\n':
+            status2 =='cat: /tmp/tst_fldr/exec_only.sh: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+        
 # пользователями ivanov и petrov записать текст в файлы каталога  tst_fldr:
-    process = subprocess.check_call("echo 'txt' > /tmp/tst_fldr/read_only.txt", shell=True)
-    process = subprocess.check_call("echo 'txt' > /tmp/tst_fldr/rw.txt", shell=True)
-    process = subprocess.check_call("echo 'txt' > /tmp/tst_fldr/write_only.txt", shell=True)
-    process = subprocess.check_call("echo 'txt' > /tmp/tst_fldr/exec_only.sh", shell=True)
+    process = subprocess.Popen("echo 'txt' > /tmp/tst_fldr/read_only.txt", shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='/bin/sh: /tmp/tst_fldr/read_only.txt: Отказано в доступе\n':
+            status2 =='/bin/sh: /tmp/tst_fldr/read_only.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+
+    process = subprocess.Popen("echo 'txt' > /tmp/tst_fldr/rw.txt", shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='/bin/sh: /tmp/tst_fldr/rw.txt: Отказано в доступе\n':
+            status2 =='/bin/sh: /tmp/tst_fldr/rw.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+
+    process = subprocess.Popen("echo 'txt' > /tmp/tst_fldr/write_only.txt", shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='/bin/sh: /tmp/tst_fldr/write_only.txt: Отказано в доступе\n':
+            status2 =='/bin/sh: /tmp/tst_fldr/write_only.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+
+    process = subprocess.Popen("echo 'txt' > /tmp/tst_fldr/exec_only.sh", shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='/bin/sh: /tmp/tst_fldr/exec_only.sh: Отказано в доступе\n':
+            status2 =='/bin/sh: /tmp/tst_fldr/exec_only.sh: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
 # пользователями ivanov и petrov выполнить файлы каталога  tst_fldr:
-    process = subprocess.check_call('/tmp/tst_fldr/exec_only.sh', shell=True)
-    process = subprocess.check_call('/tmp/tst_fldr/rw.txt', shell=True)
-    process = subprocess.check_call('/tmp/tst_fldr/write_only.txt', shell=True)
-    process = subprocess.check_call('/tmp/tst_fldr/read_only.txt', shell=True)
-    """
+    process = subprocess.Popen('/tmp/tst_fldr/exec_only.sh', shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='/bin/sh: /tmp/tst_fldr/exec_only.sh: Отказано в доступе\n':
+            status2 =='/bin/sh: /tmp/tst_fldr/exec_only.sh: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+
+    process = subprocess.Popen('/tmp/tst_fldr/rw.txt', shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='/bin/sh: /tmp/tst_fldr/rw.txt: Отказано в доступе\n':
+            status2 =='/bin/sh: /tmp/tst_fldr/rw.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+
+    process = subprocess.Popen('/tmp/tst_fldr/write_only.txt', shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='/bin/sh: /tmp/tst_fldr/write_only.txt: Отказано в доступе\n':
+            status2 =='/bin/sh: /tmp/tst_fldr/write_only.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+
+    process = subprocess.Popen('/tmp/tst_fldr/read_only.txt', shell=True, stdout = subprocess.PIPE, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+    status1,status2 = process.communicate()
+    if condition_tests == 'а':
+        if status2 =='/bin/sh: /tmp/tst_fldr/read_only.txt: Отказано в доступе\n':
+            status2 =='/bin/sh: /tmp/tst_fldr/read_only.txt: Отказано в доступе'
+            Output_tests.append(status2+'\033[32m - Успех\033[0m')
+            print Output_tests[index_list].encode('utf-8')
+            index_list +=1
+        else:
+            print status2
+            raise ValueError('\033[31m'+status2+' -не соответсвует ожиданиям!\033[0m')
+    
     print "Тест а - выполнен"
+    Output_tests.append("\033[32mТест а - выполнен\033[0m")
+    index_list +=1
+    return(index_list)
 
-    return()
-
-def test_2():  #Тест б
-    process = subprocess.Popen('logname', shell=True,
-                                   stdout = subprocess.PIPE, 
-                                stdin = subprocess.PIPE,
-                                stderr = subprocess.PIPE)
+def test_2(index_list, condition_tests):  #Тест б
+    process = subprocess.Popen('logname', shell=True,stdout = subprocess.PIPE, stdin = subprocess.PIPE,stderr = subprocess.PIPE)
     username = process.communicate()
     username = [line.rstrip() for line in username]
     #process = subprocess.check_call('sudo -i', shell=True)
 # Пользователем root назначить владельцем каталога tst_fldr и всех файлов в нем пользователя ivanov:  
     process = subprocess.check_call('sudo chown -R '+username[0]+' /tmp/tst_fldr/', shell=True)
+    if process == 0:
+        Output_tests.append('Изменение прав для каталога /tmp/tst_fldr/\033[32m прошло успешно\033[0m')
+        print Output_tests[index_list].encode('utf-8')
+        index_list +=1
 # Проверить правильность назначенных прав:   
     process = subprocess.check_call('ls -l /tmp/tst_fldr/', shell=True)
 # Владельцем всех созданных файлов является пользователь ivanov.
 # Пользователями ivanov и petrov повторить попытки чтения, записи, запуска файлов в каталоге tst_fldr
-    #process = subprocess.check_call('exit', shell=True)
-    test_1()
+    condition_tests = 'б'
+    index_list = test_1(index_list, condition_tests)
     print "Тест б - выполнен"
-    return()
+    Output_tests.append("\033[32mТест б - выполнен\033[0m")
+    index_list +=1
+    return(index_list)
 
 def test_3():  #Тест в
     process = subprocess.Popen('logname', shell=True,
@@ -316,13 +454,19 @@ def test_9():  #Тест и
     print "Тест и - выполнен"
     return()
 
-def testcase3_2_1 (index_list): #Тест кейс 3.2.1
-    precondition(index_list)
+def testcase3_2_1 (self): #Тест кейс 3.2.1
+    condition_tests = 'а'
+
+    index_list = precondition(self)
+
+    index_list = test_1(index_list, condition_tests)
+
+    index_list = test_2(index_list, condition_tests)
+
     return()
 
-    test_1()
+    
 """    
-    test_2()
     
     test_3()
  
