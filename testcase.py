@@ -1,7 +1,7 @@
 # coding: utf8
 #print sys.path
 #sys.path.append('/home/123/project_python')
-import sourcetestcase
+import pre_condition
 import string
 import subprocess
 import pyautogui
@@ -24,8 +24,8 @@ while loop == True:
     print '==================================================='
     response = raw_input('Введите цифру')
     if response == '1': # 
-        sourcetestcase.testcase3_2_1(indexlist)
-        for indexlist in sourcetestcase.Output_tests:
+        pre_condition.testcase3_2_1(indexlist)
+        for indexlist in pre_condition.Output_tests:
             print indexlist.encode('utf-8')
         print '\033[32mВсе тесты закончены\033[0m'
     elif response == '2': # Выход
